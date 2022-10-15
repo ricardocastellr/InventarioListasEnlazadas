@@ -14,7 +14,7 @@ agregar.addEventListener("click",(e)=>{
     document.getElementById("costo").value = ``;
     
     const producto = new Producto(codigo, nombre, cantidad, costo);
-    if(miInv.agregar(producto))
+    if(miInv.agregar(producto) == null)
         document.getElementById("acciones").innerHTML +=
         `<h3>Producto agregado de manera exitosa.</h3>`;
     else
@@ -28,7 +28,7 @@ agregar.addEventListener("click",(e)=>{
 //Boton listado.
 const listar = document.getElementById("btnListar")
 listar.addEventListener("click", (e) => {
-    if(miInv.listar())
+    if(miInv.listar() != null)
         document.getElementById("listado").innerHTML = `${miInv.listar()}`;
     else
         document.getElementById("acciones").innerHTML +=

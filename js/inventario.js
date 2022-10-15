@@ -6,7 +6,7 @@ class Inventario{
     agregar(producto){
         if(this.primero == null){
             this.primero = producto;
-            return true;
+            return null;
         }else{
             this.agregarSiguiente(producto,this.primero);
         }
@@ -57,14 +57,17 @@ class Inventario{
     }
 
     listar(){
-        let productos = "";
-        if(this.productos.length>0){
-            for(let i=0; i<this.productos.length ;i++)
-                productos += this.productos[i].informacionProductoHTML();
-        }else 
-            return false;
-        
-        return productos;
+        if(this.primero == null){
+            return null;
+        }else{
+            let productos  = "";
+            let aux = this.primero
+            while(aux != null){
+                productos += `${aux.informacionProductoHTML()}`
+                aux = aux.siguiente;
+            }
+            return productos;
+        }
     }
 
     listarInverso(){
