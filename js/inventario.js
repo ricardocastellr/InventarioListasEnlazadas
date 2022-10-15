@@ -1,24 +1,24 @@
 class Inventario{
     constructor(){
-        this.productos = [];
+        this.primero=null;
     }
 
     agregar(producto){
-        let l = this.productos.length
-        if (l==0){
-            this.productos[l] = producto;
-            return true;
-        }
-        if(this.buscar(producto.codigo) == null && this.productos.length>0){
-            while (this.productos[l-1] != null && producto.codigo < Number(this.productos[l-1].codigo)){
-                this.productos[l]= this.productos[l-1];
-                l--;
-            }
-            this.productos[l] = producto;
+        if(this.primero == null){
+            this.primero = producto;
             return true;
         }else{
-            return false;
+            this.agregarSiguiente(producto,this.primero);
         }
+    }
+
+    agregarSiguiente(producto,nodo){
+        if(nodo.siguiente == null)
+            nodo.siguiente = producto
+        else
+            this.agregarSiguiente(producto,nodo.siguiente)
+    
+        return true;
     }
 
     eliminar(codigo){
