@@ -6,7 +6,6 @@ class Inventario{
     agregar(producto){
         if(this.primero == null){
             this.primero = producto;
-            return null;
         }else{
             this.agregarSiguiente(producto,this.primero);
         }
@@ -37,22 +36,13 @@ class Inventario{
     }
 
     buscar(codigo){
-        codigo = Number(codigo);
-        let sup = 0;
-        let inf = this.productos.length - 1;
-        
-        while(sup <= inf){
-            let centro = Math.floor((sup + inf) / 2);
-            let codigoCentro = Number(this.productos[centro].codigo);
-
-            if (codigoCentro < codigo) 
-                sup = centro + 1;
-            else if (codigoCentro > codigo) 
-                inf = centro - 1;
-            else if (codigoCentro === codigo)
-                return this.productos[centro];   
+        let aux = this.primero;
+        while(aux != null){
+            if(Number(aux.codigo) == Number(codigo))
+                return aux;
+            else
+                aux = aux.siguiente;
         }
-
         return null;
     }
 
