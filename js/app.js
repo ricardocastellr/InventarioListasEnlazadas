@@ -14,14 +14,14 @@ agregar.addEventListener("click",(e)=>{
     document.getElementById("costo").value = ``;
     
     const producto = new Producto(codigo, nombre, cantidad, costo);
-    if(miInv.agregar(producto) == null)
+    if(miInv.agregar(producto))
         document.getElementById("acciones").innerHTML +=
         `<h3>Producto agregado de manera exitosa.</h3>`;
     else
         document.getElementById("acciones").innerHTML +=
         `<h3>El código del producto ya existe en el inventario o no ingresó un código.</h3>`;
     
-
+    document.getElementById("listado").innerHTML = ``;
     e.preventDefault(); //Cancela el evento.
 });
 
@@ -30,9 +30,11 @@ const listar = document.getElementById("btnListar")
 listar.addEventListener("click", (e) => {
     if(miInv.listar() != null)
         document.getElementById("listado").innerHTML = `${miInv.listar()}`;
-    else
+    else{
         document.getElementById("acciones").innerHTML +=
         `<h3>No hay productos en el almacen.</h3>`;
+        document.getElementById("listado").innerHTML = ``;
+    }
 
     e.preventDefault(); //Cancela el evento.
 });
@@ -42,10 +44,11 @@ const listarInverso = document.getElementById("btnListarInverso")
 listarInverso.addEventListener("click", (e) => {
     if(miInv.listarInverso())
         document.getElementById("listado").innerHTML = `${miInv.listarInverso()}`;
-    else
+    else{
         document.getElementById("acciones").innerHTML +=
         `<h3>No hay productos en el almacen.</h3>`;
-        
+        document.getElementById("listado").innerHTML = ``;
+    }  
     e.preventDefault(); //Cancela el evento.
 });
 
@@ -54,18 +57,14 @@ const eliminar = document.getElementById("btnEliminar")
 eliminar.addEventListener("click", (e) => {
     const producto = miInv.eliminar(document.getElementById("delCodigo").value);
     document.getElementById("delCodigo").value = ``;
-    if(producto == true){
+    if(producto == true)
         document.getElementById("acciones").innerHTML +=
         `<h3>El producto se eliminó con exito.</h3>`;
-        document.getElementById("listado").innerHTML = ``;
-    }
-    else{
+    else
         document.getElementById("acciones").innerHTML +=
         `<h3>El producto que desea eliminar no existe.</h3>`;
-        document.getElementById("listado").innerHTML = ``;
-    }
 
-
+    document.getElementById("listado").innerHTML = ``;
     e.preventDefault(); //Cancela el evento.
 });
 

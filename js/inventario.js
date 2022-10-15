@@ -4,20 +4,23 @@ class Inventario{
     }
 
     agregar(producto){
-        if(this.primero == null){
-            this.primero = producto;
-        }else{
-            this.agregarSiguiente(producto,this.primero);
-        }
+        if(this.buscar(producto.codigo) == null){
+            if(this.primero == null)
+                this.primero = producto;
+            else{
+                console.log("aña")
+                this.agregarSiguiente(producto,this.primero);
+            }
+            return true;
+        }else 
+            return false;
     }
 
     agregarSiguiente(producto,nodo){
         if(nodo.siguiente == null)
-            nodo.siguiente = producto
+            nodo.siguiente = producto;
         else
-            this.agregarSiguiente(producto,nodo.siguiente)
-    
-        return true;
+            this.agregarSiguiente(producto,nodo.siguiente);
     }
 
     eliminar(codigo){
@@ -40,7 +43,7 @@ class Inventario{
         while(aux != null){
             if(Number(aux.codigo) == Number(codigo))
                 return aux;
-            else
+            else 
                 aux = aux.siguiente;
         }
         return null;
