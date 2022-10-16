@@ -42,7 +42,7 @@ listar.addEventListener("click", (e) => {
 //Boton listado inverso.
 const listarInverso = document.getElementById("btnListarInverso")
 listarInverso.addEventListener("click", (e) => {
-    if(miInv.listarInverso())
+    if(miInv.listarInverso() != null)
         document.getElementById("listado").innerHTML = `${miInv.listarInverso()}`;
     else{
         document.getElementById("acciones").innerHTML +=

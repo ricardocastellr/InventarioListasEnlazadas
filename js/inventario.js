@@ -59,7 +59,7 @@ class Inventario{
         if(this.primero == null){
             return null;
         }else{
-            let productos  = "";
+            let productos = "";
             let aux = this.primero
             while(aux != null){
                 productos += aux.informacionProductoHTML();
@@ -69,14 +69,20 @@ class Inventario{
         }
     }
 
-    listarInverso(){
-        let productos = "";
-        if(this.productos.length>0){
-            for(let i=this.productos.length-1; i>=0 ;i--)
-                productos += this.productos[i].informacionProductoHTML();
-        }else 
-            return false;
-
-        return productos;
+    listarInverso() {
+        if(this.primero == null)
+            return null;
+        else{
+            let productos = "";
+            productos = this.recorrerInverso(this.primero);
+            return productos;
+        }
     }
+    
+      recorrerInverso(nodo){
+        if(nodo.next == null)
+          return `${nodo.informacionProductoHTML()}` // En caso de solo existir una posición.
+    
+        return `${this.recorrerInverso(nodo.next)}  ${nodo.informacionProductoHTML()}`
+      }
 }
