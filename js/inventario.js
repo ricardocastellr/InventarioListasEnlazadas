@@ -1,41 +1,47 @@
 class Inventario{
     constructor(){
-        this.primero=null;
+        this.primero  = null;
     }
 
     agregar(producto){
-        if(this.buscar(producto.codigo) == null){
+        if(this.buscar(producto.codigo) == null && Number(producto.codigo) > 0){
             if(this.primero == null)
                 this.primero = producto;
-            else{
-                console.log("aña")
-                this.agregarSiguiente(producto,this.primero);
-            }
+            else
+                this.agregarFinal(producto,this.primero);
+            
             return true;
         }else 
             return false;
     }
 
-    agregarSiguiente(producto,nodo){
-        if(nodo.siguiente == null)
-            nodo.siguiente = producto;
+    agregarFinal(producto,nodo){
+        if(nodo.next == null)
+            nodo.next = producto;
         else
-            this.agregarSiguiente(producto,nodo.siguiente);
+            this.agregarFinal(producto,nodo.next);
     }
 
     eliminar(codigo){
         if(this.buscar(codigo) == null)
             return false;
-        else{
-            for(let i=0; i<this.productos.length ;i++){
-                if(codigo == this.productos[i].codigo){
-                    for(let j=i; j<this.productos.length-1 ;j++)
-                        this.productos[j] = this.productos[j+1];
+        else{ 
+            codigo = Number(codigo);
+            if(Number(this.primero.codigo) == codigo) // En caso de ser la primera posición
+                this.primero = this.primero.next;
+            else{                            //Cualquier otra posición.
+                let aux = this.primero;
+                let temp;
+                while(aux.next != null){
+                    temp = aux.next;
+                    if(Number(temp.codigo) == codigo)
+                        aux.next = aux.next.next;
+                    else
+                        aux = aux.next;
                 }
-            }
-            this.productos.pop();
-            return true;
+            }    
         }
+        return true;
     }
 
     buscar(codigo){
@@ -44,7 +50,7 @@ class Inventario{
             if(Number(aux.codigo) == Number(codigo))
                 return aux;
             else 
-                aux = aux.siguiente;
+                aux = aux.next;
         }
         return null;
     }
@@ -56,8 +62,8 @@ class Inventario{
             let productos  = "";
             let aux = this.primero
             while(aux != null){
-                productos += `${aux.informacionProductoHTML()}`
-                aux = aux.siguiente;
+                productos += aux.informacionProductoHTML();
+                aux = aux.next;
             }
             return productos;
         }
