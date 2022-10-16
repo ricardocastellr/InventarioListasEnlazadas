@@ -22,8 +22,31 @@ class Inventario{
             this.agregarFinal(producto,nodo.next);
     }
 
-    insertar(producto, posicion){
-
+    insertar(posicion, nuevo){
+        if(this.buscar(nuevo.codigo) == null && Number(nuevo.codigo) > 0){
+            let aux = this.primero;
+            if (posicion == 1) { // En caso de ser la primera posición
+                this.primero = nuevo;
+                this.primero.next = aux;
+            } else { // Cualquier otra posición
+                let i = 2;
+                while (i != posicion) {
+                    if (aux.next != null) {
+                        aux = aux.next;
+                        i++;
+                    }else
+                        break;   
+                }
+                if (i == posicion) { // En caso de ser la segunda posición
+                    nuevo.next = aux.next;
+                    aux.next = nuevo;
+                }else // No se ha encontrado ninguna posición donde se pueda colocar el nuevo producto
+                    return false;
+                
+            }
+            return true;
+        }else
+            return false;
     }
 
     eliminar(codigo){

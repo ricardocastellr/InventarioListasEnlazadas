@@ -16,7 +16,6 @@ agregar.addEventListener("click",(e)=>{
     const nombre = document.getElementById("nombre").value;
     const cantidad = document.getElementById("cantidad").value;
     const costo = document.getElementById("costo").value;
-    const posicion = document.getElementById('casillaInsertar');
 
     document.getElementById("codigo").value = ``;
     document.getElementById("nombre").value = ``;
@@ -25,11 +24,14 @@ agregar.addEventListener("click",(e)=>{
     
     const producto = new Producto(codigo, nombre, cantidad, costo);
     if(checkBoxInsertar.checked == true){
-        alert("YEAH")
-        if(miInv.insertar(producto, posicion)){
-
+        const posicion = document.getElementById('casillaInsertar').value;
+        if(miInv.insertar(posicion, producto)){
+            document.getElementById("acciones").innerHTML +=
+            `<h3>Producto insertado de manera exitosa.</h3>`;
         }else{
-            
+            document.getElementById("acciones").innerHTML +=
+            `<h3>El código del producto ya existe en el inventario, no ingresó un código o 
+            la posición es incorrecta.</h3>`;
         }
         document.getElementById("casillaInsertar").value = ``;
     }else{
