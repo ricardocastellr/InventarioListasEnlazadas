@@ -22,6 +22,10 @@ class Inventario{
             this.agregarFinal(producto,nodo.next);
     }
 
+    insertar(producto, posicion){
+
+    }
+
     eliminar(codigo){
         if(this.buscar(codigo) == null)
             return false;

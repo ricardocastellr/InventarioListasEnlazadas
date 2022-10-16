@@ -1,5 +1,14 @@
 const miInv = new Inventario();
 
+checkBoxInsertar.addEventListener('click', () => {
+    if (checkBoxInsertar.checked == true) {
+        let divInsertar = document.getElementById('divInsertar');
+        document.getElementById('divInsertar').innerHTML = 
+        `<input type="number" placeholder="Posición" id="casillaInsertar">`;
+    }else
+        document.getElementById('casillaInsertar').remove();
+});
+
 //Boton agregar.
 const agregar = document.getElementById("btnAgregar");
 agregar.addEventListener("click",(e)=>{
@@ -7,6 +16,7 @@ agregar.addEventListener("click",(e)=>{
     const nombre = document.getElementById("nombre").value;
     const cantidad = document.getElementById("cantidad").value;
     const costo = document.getElementById("costo").value;
+    const posicion = document.getElementById('casillaInsertar');
 
     document.getElementById("codigo").value = ``;
     document.getElementById("nombre").value = ``;
@@ -14,12 +24,22 @@ agregar.addEventListener("click",(e)=>{
     document.getElementById("costo").value = ``;
     
     const producto = new Producto(codigo, nombre, cantidad, costo);
-    if(miInv.agregar(producto))
-        document.getElementById("acciones").innerHTML +=
-        `<h3>Producto agregado de manera exitosa.</h3>`;
-    else
-        document.getElementById("acciones").innerHTML +=
-        `<h3>El código del producto ya existe en el inventario o no ingresó un código.</h3>`;
+    if(checkBoxInsertar.checked == true){
+        alert("YEAH")
+        if(miInv.insertar(producto, posicion)){
+
+        }else{
+            
+        }
+        document.getElementById("casillaInsertar").value = ``;
+    }else{
+        if(miInv.agregar(producto))
+            document.getElementById("acciones").innerHTML +=
+            `<h3>Producto agregado de manera exitosa.</h3>`;
+        else
+            document.getElementById("acciones").innerHTML +=
+            `<h3>El código del producto ya existe en el inventario o no ingresó un código.</h3>`;
+    }
     
     document.getElementById("listado").innerHTML = ``;
     e.preventDefault(); //Cancela el evento.
