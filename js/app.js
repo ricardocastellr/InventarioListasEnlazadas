@@ -1,6 +1,6 @@
 const miInv = new Inventario();
 
-//Boton insertar
+//Boton insertar.
 checkBoxInsertar.addEventListener('click', () => {
     if (checkBoxInsertar.checked == true) 
         document.getElementById('divInsertar').innerHTML = 
