@@ -8,8 +8,8 @@ Se va a controlar un inventario de productos usando listas enlazasas simples, de
 
 Utilizando vectores y podremos:
 - Agregar.
-- Insertar en cierta posición.
+- Insertar un producto en cierta posición.
 - Buscar por codigo. 
-- Eliminar por codigo. 
-- Insertar un producto en una posicion.
+- Eliminar por codigo.
 - Recuperar el listado como texto.
+- Recuperar el listado inverso como texto.
