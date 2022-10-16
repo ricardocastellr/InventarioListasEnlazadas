@@ -1,11 +1,11 @@
 const miInv = new Inventario();
 
+//Boton insertar
 checkBoxInsertar.addEventListener('click', () => {
-    if (checkBoxInsertar.checked == true) {
-        let divInsertar = document.getElementById('divInsertar');
+    if (checkBoxInsertar.checked == true) 
         document.getElementById('divInsertar').innerHTML = 
         `<input type="number" placeholder="Posición" id="casillaInsertar">`;
-    }else
+    else
         document.getElementById('casillaInsertar').remove();
 });
 
@@ -27,7 +27,8 @@ agregar.addEventListener("click",(e)=>{
         const posicion = document.getElementById('casillaInsertar').value;
         if(miInv.insertar(posicion, producto)){
             document.getElementById("acciones").innerHTML +=
-            `<h3>Producto insertado de manera exitosa.</h3>`;
+            `<h3>Producto con código '${codigo}' insertado en la posición ${posicion} 
+            de manera exitosa.</h3>`;
         }else{
             document.getElementById("acciones").innerHTML +=
             `<h3>El código del producto ya existe en el inventario, no ingresó un código o 
